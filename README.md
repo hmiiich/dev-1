@@ -1,64 +1,85 @@
-LAB1Dev
-Travaux Pratiques Android – TP1 : HelloToast 📱
-Objectif du TP
-Ce premier travail pratique a pour but de se familiariser avec l'environnement Android Studio et de créer une première application Android fonctionnelle. L'application réalisée permet d'interagir avec deux boutons : l'un pour afficher une notification temporaire (Toast), l'autre pour incrémenter un compteur visuel.
+RAPPORT DE LABORATOIRE – HELLO TOAST
+Titre	HelloToast : Manipuler les composants et les événements
+Cours	Programmation Mobile : Android avec Java
+Plateforme	MLIAEdu
+Étudiant	hmich mohammed-amine
+Date	[Date de réalisation]
+1. Objectif du lab
+L’objectif de ce premier laboratoire est de :
 
-Vidéo de démonstration
-📹
+Créer un projet Android simple.
+
+Concevoir une interface utilisateur avec des boutons et des éléments TextView.
+
+Gérer les événements clics sur les boutons.
+
+Afficher des messages temporaires (Toast).
+
+Mettre à jour dynamiquement le contenu d’un TextView.
+
+2. Travail réalisé
+2.1 Création du projet
+Un nouveau projet Android a été créé avec Empty Activity.
+
+Nom du projet : HelloToast.
+
+Langage : Java.
+
+SDK minimum : API 21 (Android 5.0).
+
+2.2 Conception de l’interface (layout)
+Fichier modifié : activity_main.xml.
+
+Composants ajoutés :
+
+Un TextView central pour afficher le compteur.
+
+Un bouton “Afficher Toast”.
+
+Un bouton “Incrémenter”.
+
+Disposition : ConstraintLayout ou LinearLayout.
+
+2.3 Logique Java (MainActivity.java)
+Les actions suivantes ont été implémentées :
+
+Composant	Action	Comportement
+Bouton “Afficher Toast”	onClick	Affiche un Toast avec le message “Hello Toast !”
+Bouton “Incrémenter”	onClick	Incrémente le compteur et met à jour le TextView
+TextView	setText()	Affiche la valeur actuelle du compteur
+Extrait de code clé :
+java
+Button toastButton = findViewById(R.id.button_toast);
+Button countButton = findViewById(R.id.button_count);
+TextView countText = findViewById(R.id.text_count);
+
+toastButton.setOnClickListener(v -> {
+    Toast.makeText(MainActivity.this, "Hello Toast !", Toast.LENGTH_SHORT).show();
+});
+
+countButton.setOnClickListener(v -> {
+    int count = Integer.parseInt(countText.getText().toString());
+    count++;
+    countText.setText(String.valueOf(count));
+});
+3. Résultats obtenus
+✅ Application compilée et exécutée avec succès sur émulateur/périphérique physique.
+
+✅ Clic sur “Afficher Toast” → message contextuel apparaît.
+
+✅ Clic sur “Incrémenter” → le compteur augmente et s’affiche à l’écran.
+
+✅ Interface simple et réactive.
+
+Capture d’écran (optionnel)
+(Insérer ici une capture de l’application en cours d’exécution)
+
+4. Difficultés rencontrées et solutions
+Difficulté	Solution
+Oubli de déclarer les IDs des composants dans le layout	Vérification et ajout manuel des attributs android:id
+Erreur de conversion du texte du compteur	Utilisation de Integer.parseInt() avec valeur par défaut 0
 
 
 https://github.com/user-attachments/assets/4f7f2df4-2e7e-4c9f-a5c6-79d240bbbd96
 
 
- Toast.mp4 
-Ce que fait l'application
-L'interface principale contient trois éléments :
-
-Un bouton TOAST en haut → affiche le message "Bonjour Kaoutar Menacera" pendant quelques secondes
-Un grand chiffre au centre → représente le nombre de fois que le bouton COUNT a été pressé
-Un bouton COUNT en bas → augmente le compteur de 1 à chaque pression
-Le thème visuel de l'application utilise une couleur rose vif pour les boutons et la barre de navigation.
-
-Environnement de développement
-Outil	Version / Détail
-IDE	Android Studio
-Langage	Java
-Émulateur	Pixel 6 Pro – API 33
-Gradle Plugin	8.1.0
-Durée du build	7 secondes
-minSdk	24
-targetSdk	34
-Organisation des fichiers
-HelloToast/
-├── app/
-│   └── src/
-│       └── main/
-│           ├── java/
-│           │   └── com/example/hellotoast/
-│           │       └── MainActivity.java
-│           ├── res/
-│           │   ├── layout/
-│           │   │   └── activity_main.xml
-│           │   └── values/
-│           │       ├── strings.xml
-│           │       └── themes.xml
-│           └── AndroidManifest.xml
-└── build.gradle
-Extrait du code principal
-public void showToast(View view) {
-    Toast toast = Toast.makeText(this, "Bonjour Kaoutar Menacera", Toast.LENGTH_SHORT);
-    toast.show();
-}
-
-public void countUp(View view) {
-    mCount++;
-    mShowCount.setText(Integer.toString(mCount));
-}
-Lancer le projet
-1. Ouvrir Android Studio
-2. File > Open > sélectionner le dossier HelloToast
-3. Attendre la fin de la synchronisation Gradle
-4. Démarrer l'émulateur Pixel 6 Pro
-5. Appuyer sur Run ▶️
-Résultat obtenu
-Le build s'est terminé avec succès (BUILD SUCCESSFUL). L'application se lance correctement sur l'émulateur. Le compteur s'incrémente bien à chaque clic et le message Toast s'affiche comme attendu.
